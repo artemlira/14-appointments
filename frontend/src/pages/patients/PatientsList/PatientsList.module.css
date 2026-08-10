@@ -5,9 +5,9 @@
 
 .header {
   display: flex;
+  gap: 18px;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 18px;
   padding: 30px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -17,11 +17,11 @@
 
 .kicker {
   width: fit-content;
-  margin-bottom: 10px;
   padding: 6px 10px;
-  color: var(--accent-dark);
+  margin-bottom: 10px;
   font-size: 13px;
   font-weight: 800;
+  color: var(--accent-dark);
   text-transform: uppercase;
   background: var(--accent-soft);
   border: 1px solid var(--accent-border);
@@ -40,17 +40,16 @@
   justify-content: center;
   min-height: 44px;
   padding: 0 18px;
-  color: white;
   font-weight: 800;
+  color: white;
   text-decoration: none;
   white-space: nowrap;
   background: var(--accent);
   border: 1px solid var(--accent-dark);
   border-radius: var(--radius-sm);
   box-shadow: 0 10px 22px rgba(15, 118, 110, 0.2);
-  transition:
-    background-color 160ms ease,
-    transform 160ms ease;
+  transition: background-color 160ms ease,
+  transform 160ms ease;
 }
 
 .addButton:hover {
@@ -68,9 +67,9 @@
 
 .tableHeader {
   display: flex;
+  gap: 14px;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
   padding: 20px 22px;
   border-bottom: 1px solid var(--border);
 }
@@ -78,9 +77,9 @@
 .tableHeader span {
   flex: 0 0 auto;
   padding: 5px 10px;
-  color: var(--text-muted);
   font-size: 13px;
   font-weight: 800;
+  color: var(--text-muted);
   background: var(--surface-soft);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -98,9 +97,9 @@
 
 .table th {
   padding: 13px 18px;
-  color: var(--text-muted);
   font-size: 12px;
   font-weight: 850;
+  color: var(--text-muted);
   text-align: left;
   text-transform: uppercase;
   background: var(--surface-soft);
@@ -129,8 +128,8 @@
 
 @media (max-width: 720px) {
   .header {
-    align-items: stretch;
     flex-direction: column;
+    align-items: stretch;
     padding: 24px;
   }
 

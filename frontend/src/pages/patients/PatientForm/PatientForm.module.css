@@ -25,9 +25,9 @@
 .kicker {
   width: fit-content;
   padding: 6px 10px;
-  color: var(--accent-dark);
   font-size: 13px;
   font-weight: 800;
+  color: var(--accent-dark);
   text-transform: uppercase;
   background: var(--accent-soft);
   border: 1px solid var(--accent-border);
@@ -64,9 +64,9 @@
 }
 
 .field span {
-  color: var(--text-h);
   font-size: 14px;
   font-weight: 800;
+  color: var(--text-h);
 }
 
 .field input,
@@ -79,10 +79,9 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   outline: none;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease;
+  transition: background-color 160ms ease,
+  border-color 160ms ease,
+  box-shadow 160ms ease;
 }
 
 .field textarea {
@@ -111,8 +110,8 @@
 .submitButton {
   min-height: 46px;
   padding: 0 22px;
-  color: white;
   font-weight: 850;
+  color: white;
   background: var(--accent);
   border: 1px solid var(--accent-dark);
   border-radius: var(--radius-sm);

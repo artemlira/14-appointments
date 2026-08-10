@@ -15,16 +15,16 @@
 
 .header p:last-child {
   max-width: 760px;
-  color: var(--text);
   font-size: 17px;
+  color: var(--text);
 }
 
 .kicker {
   width: fit-content;
   padding: 6px 10px;
-  color: var(--blue);
   font-size: 13px;
   font-weight: 800;
+  color: var(--blue);
   text-transform: uppercase;
   background: var(--blue-soft);
   border-radius: var(--radius-sm);

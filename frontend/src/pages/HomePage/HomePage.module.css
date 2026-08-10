@@ -10,9 +10,8 @@
   align-items: stretch;
   padding: 34px;
   overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.14), transparent 44%),
-    var(--surface);
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.14), transparent 44%),
+  var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -20,17 +19,17 @@
 
 .heroText {
   display: grid;
-  align-content: center;
   gap: 16px;
+  align-content: center;
   min-width: 0;
 }
 
 .kicker {
   width: fit-content;
   padding: 6px 10px;
-  color: var(--accent-dark);
   font-size: 13px;
   font-weight: 800;
+  color: var(--accent-dark);
   text-transform: uppercase;
   background: var(--accent-soft);
   border: 1px solid var(--accent-border);
@@ -39,8 +38,8 @@
 
 .lead {
   max-width: 680px;
-  color: var(--text);
   font-size: 18px;
+  color: var(--text);
 }
 
 .summaryPanel {
@@ -67,17 +66,17 @@
 }
 
 .metric {
-  color: var(--text-h);
   font-size: 34px;
   font-weight: 850;
   line-height: 110%;
+  color: var(--text-h);
 }
 
 .label {
   margin-top: 4px;
-  color: var(--text-muted);
   font-size: 14px;
   font-weight: 700;
+  color: var(--text-muted);
 }
 
 .modules {
@@ -102,8 +101,8 @@
   place-items: center;
   width: 42px;
   height: 42px;
-  color: var(--accent-dark);
   font-weight: 850;
+  color: var(--accent-dark);
   background: var(--accent-soft);
   border: 1px solid var(--accent-border);
   border-radius: var(--radius-sm);
