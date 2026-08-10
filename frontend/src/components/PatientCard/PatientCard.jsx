@@ -1,6 +1,6 @@
 import {useDeletePatientMutation} from "@/store/slices/patientsApi";
 import styles from './PatientCard.module.css';
-import {Link} from "react-router";
+import ActionButton from "@/components/ui/ActionButton";
 
 function PatientCard(props) {
   const {data} = props;
@@ -20,20 +20,25 @@ function PatientCard(props) {
       <td>{data.address}</td>
       <td>
         <div className={styles.actions}>
-        <Link
-          className={styles.editLink}
-          to={`/patients/${data.id}`}
-        >
-          Edit
-        </Link>
-        <button
-          className={styles.deleteButton}
-          type="button"
-          onClick={onDelete}
-          disabled={isLoading}
-        >
-          {buttonLabel}
-        </button>
+          <ActionButton
+            variant="secondary"
+            to={`/patients/${data.id}/card`}
+          >
+            Картка
+          </ActionButton>
+          <ActionButton
+            variant="secondary"
+            to={`/patients/${data.id}`}
+          >
+            Edit
+          </ActionButton>
+          <ActionButton
+            variant="danger"
+            onClick={onDelete}
+            disabled={isLoading}
+          >
+            {buttonLabel}
+          </ActionButton>
         </div>
       </td>
     </tr>

@@ -14,33 +14,3 @@
   gap: 8px;
   align-items: center;
 }
-
-.editLink,
-.deleteButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  padding: 0 12px;
-  font-size: 14px;
-  font-weight: 800;
-  text-decoration: none;
-  border-radius: var(--radius-sm);
-}
-
-.editLink {
-  color: var(--blue);
-  background: var(--blue-soft);
-  border: 1px solid rgba(37, 99, 235, 0.22);
-}
-
-.deleteButton {
-  color: var(--red);
-  background: var(--red-soft);
-  border: 1px solid rgba(220, 38, 38, 0.22);
-}
-
-.editLink:hover,
-.deleteButton:hover:not(:disabled) {
-  filter: brightness(0.98);
-}

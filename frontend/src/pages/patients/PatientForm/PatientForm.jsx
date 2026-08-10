@@ -6,6 +6,9 @@ import {
   useUpdatePatientMutation
 } from "@/store/slices/patientsApi";
 import {useNavigate, useParams} from "react-router";
+import FormShell, {Field, FormGrid, FormSection} from "@/components/ui/FormShell";
+import PageHeader from "@/components/ui/PageHeader";
+import StateMessage from "@/components/ui/StateMessage";
 
 const emptyPatientData = {
   id: '',
@@ -56,122 +59,107 @@ function PatientForm() {
     navigate('/patients');
   };
 
-  if (patientLoading) return <div className={styles.state}>Loading...</div>;
+  if (patientLoading) return <StateMessage>Loading...</StateMessage>;
   if (patientError) {
     const errorMessage = patientRequestError?.data?.error ?? 'Не вдалося завантажити пацієнта';
-    return <div className={styles.state}>Error: {errorMessage}</div>;
+    return <StateMessage>Error: {errorMessage}</StateMessage>;
   }
 
   const loading = createLoading || updateLoading;
   const buttonLabel = `${id ? 'Зберегти' : 'Створити'} ${loading ? '...' : ''}`
+
   return (
     <div className={styles.patientForm}>
-      <section className={styles.header}>
-        <p className={styles.kicker}>{id ? 'Edit patient' : 'New patient'}</p>
-        <h1>{`${id ? 'Редагування даних' : 'Створення нового'} пацієнта`}</h1>
-        <p>
-          Заповніть основні контактні та медичні дані. Ця форма стане основою для
-          майбутніх записів на прийом.
-        </p>
-      </section>
+      <PageHeader
+        kicker={id ? 'Edit patient' : 'New patient'}
+        title={`${id ? 'Редагування даних' : 'Створення нового'} пацієнта`}
+        description="Заповніть основні контактні та медичні дані. Ця форма стане основою для майбутніх записів на прийом."
+      />
 
-      <form
-        className={styles.form}
+      <FormShell
         onSubmit={onSave}
+        submitLabel={buttonLabel}
+        submitting={loading}
       >
-        <div className={styles.formSection}>
-          <h2>Основна інформація</h2>
-          <div className={styles.grid}>
-            <label className={styles.field}>
-              <span>Імʼя пацієнта</span>
+        <FormSection title="Основна інформація">
+          <FormGrid>
+            <Field label="Імʼя пацієнта">
               <input
                 type="text"
                 name="fullName"
                 value={form.fullName}
                 onChange={handleChange}
               />
-            </label>
+            </Field>
 
-            <label className={styles.field}>
-              <span>Дата народження</span>
+            <Field label="Дата народження">
               <input
                 type="date"
                 name="birthDate"
                 value={form.birthDate}
                 onChange={handleChange}
               />
-            </label>
+            </Field>
 
-            <label className={styles.field}>
-              <span>Стать</span>
+            <Field label="Стать">
               <input
                 type="text"
                 name="gender"
                 value={form.gender}
                 onChange={handleChange}
               />
-            </label>
-          </div>
-        </div>
+            </Field>
+          </FormGrid>
+        </FormSection>
 
-        <div className={styles.formSection}>
-          <h2>Контакти</h2>
-          <div className={styles.grid}>
-            <label className={styles.field}>
-              <span>Телефон</span>
+        <FormSection title="Контакти">
+          <FormGrid>
+            <Field label="Телефон">
               <input
                 type="tel"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
               />
-            </label>
+            </Field>
 
-            <label className={styles.field}>
-              <span>Email</span>
+            <Field label="Email">
               <input
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
               />
-            </label>
+            </Field>
 
-            <label className={`${styles.field} ${styles.fullWidth}`}>
-              <span>Адреса</span>
+            <Field
+              label="Адреса"
+              fullWidth
+            >
               <input
                 type="text"
                 name="address"
                 value={form.address}
                 onChange={handleChange}
               />
-            </label>
-          </div>
-        </div>
+            </Field>
+          </FormGrid>
+        </FormSection>
 
-        <div className={styles.formSection}>
-          <h2>Примітки</h2>
-          <label className={`${styles.field} ${styles.fullWidth}`}>
-            <span>Примітки</span>
+        <FormSection title="Примітки">
+          <Field
+            label="Примітки"
+            fullWidth
+          >
             <textarea
               name="notes"
               rows="4"
               value={form.notes}
               onChange={handleChange}
             />
-          </label>
-        </div>
-
-        <div className={styles.actions}>
-          <button
-            className={styles.submitButton}
-            type="submit"
-            disabled={loading}
-          >
-            {buttonLabel}
-          </button>
-        </div>
-      </form>
+          </Field>
+        </FormSection>
+      </FormShell>
     </div>
   )
 }

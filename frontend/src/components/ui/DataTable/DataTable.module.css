@@ -1,0 +1,63 @@
+.tableShell {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.tableHeader {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tableHeader span {
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-muted);
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: 13px 18px;
+  font-size: 12px;
+  font-weight: 850;
+  color: var(--text-muted);
+  text-align: left;
+  text-transform: uppercase;
+  background: var(--surface-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.empty {
+  padding: 28px;
+  color: var(--text-muted);
+  text-align: center;
+}

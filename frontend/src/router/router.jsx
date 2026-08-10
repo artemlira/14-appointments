@@ -4,6 +4,11 @@ import MainLayout from "@/MainLayout";
 import AboutPage from "@/pages/AboutPage";
 import PatientsList from "@/pages/patients/PatientsList";
 import PatientForm from "@/pages/patients/PatientForm";
+import PatientDetails from "@/pages/patients/PatientDetails";
+import DoctorsList from "@/pages/doctors/DoctorsList";
+import DoctorForm from "@/pages/doctors/DoctorForm";
+import AppointmentsList from "@/pages/appointments/AppointmentsList";
+import AppointmentForm from "@/pages/appointments/AppointmentForm";
 
 export const routes = [
   {
@@ -28,12 +33,56 @@ export const routes = [
             Component: PatientForm,
           },
           {
+            path: ':id/card',
+            Component: PatientDetails,
+          },
+          {
             path: ':id',
             Component: PatientForm,
           }
         ],
         meta:{
           title: 'Пацієнти'
+        }
+      },
+      {
+        path: '/doctors',
+        children: [
+          {
+            index: true,
+            Component: DoctorsList,
+          },
+          {
+            path: 'new',
+            Component: DoctorForm,
+          },
+          {
+            path: ':id',
+            Component: DoctorForm,
+          }
+        ],
+        meta: {
+          title: 'Лікарі'
+        }
+      },
+      {
+        path: '/appointments',
+        children: [
+          {
+            index: true,
+            Component: AppointmentsList,
+          },
+          {
+            path: 'new',
+            Component: AppointmentForm,
+          },
+          {
+            path: ':id',
+            Component: AppointmentForm,
+          }
+        ],
+        meta: {
+          title: 'Записи'
         }
       },
       {
