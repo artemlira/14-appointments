@@ -1,15 +1,59 @@
 .mainMenu {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 20px;
   width: 100%;
-  min-height: 50px;
-  background-color: #bbb;
+  min-height: 72px;
+  padding: 12px 14px 12px 18px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.logo {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  color: white;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  border-radius: var(--radius-sm);
+}
+
+.name,
+.caption {
+  display: block;
+  white-space: nowrap;
+}
+
+.name {
+  color: var(--text-h);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 120%;
+}
+
+.caption {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 120%;
 }
 
 .list {
   display: flex;
-  gap: 16px;
+  gap: 6px;
   align-items: center;
   justify-content: center;
   padding: 0;
@@ -18,16 +62,57 @@
 }
 
 .item {
-  padding: 3px 6px;
-  color: #08060d;
+  color: var(--text);
   cursor: pointer;
 }
 
 .link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 14px;
   color: inherit;
+  font-weight: 700;
   text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.link:hover {
+  color: var(--text-h);
+  background: var(--surface-soft);
+  border-color: var(--border);
 }
 
 .active {
-  color: blue;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+
+@media (max-width: 720px) {
+  .mainMenu {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .list {
+    justify-content: stretch;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .item {
+    flex: 1 0 auto;
+  }
+
+  .link {
+    justify-content: center;
+    width: 100%;
+  }
 }

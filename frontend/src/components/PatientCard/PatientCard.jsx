@@ -1,8 +1,10 @@
 import {useDeletePatientMutation} from "@/store/slices/patientsApi";
+import styles from './PatientCard.module.css';
+import {Link} from "react-router";
 
 function PatientCard(props) {
   const {data} = props;
-  const [deletePatient, {isLoading, isError}] = useDeletePatientMutation();
+  const [deletePatient, {isLoading}] = useDeletePatientMutation();
   const onDelete = async () => {
     await deletePatient(data.id);
   };
@@ -10,15 +12,29 @@ function PatientCard(props) {
   const buttonLabel = `Delete ${isLoading ? '...' : ''}`
   return (
     <tr>
-      <td>{data.fullName}</td>
+      <td>
+        <div className={styles.patientName}>{data.fullName}</div>
+        <div className={styles.patientEmail}>{data.email || 'Email не вказано'}</div>
+      </td>
       <td>{data.phone}</td>
       <td>{data.address}</td>
       <td>
+        <div className={styles.actions}>
+        <Link
+          className={styles.editLink}
+          to={`/patients/${data.id}`}
+        >
+          Edit
+        </Link>
         <button
-          type=""
+          className={styles.deleteButton}
+          type="button"
           onClick={onDelete}
-        >{buttonLabel}
+          disabled={isLoading}
+        >
+          {buttonLabel}
         </button>
+        </div>
       </td>
     </tr>
   )

@@ -26,6 +26,10 @@ export const routes = [
           {
             path: 'new',
             Component: PatientForm,
+          },
+          {
+            path: ':id',
+            Component: PatientForm,
           }
         ],
         meta:{

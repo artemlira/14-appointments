@@ -6,32 +6,55 @@ import {Link} from "react-router";
 function PatientsList() {
   const {data: patients, isLoading, isError} = useGetPatientsQuery();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {isError.message}</div>;
+  if (isLoading) return <div className={styles.state}>Loading...</div>;
+  if (isError) return <div className={styles.state}>Error: {isError.message}</div>;
+
   return (
     <div className={styles.patientsList}>
-      <h1>Patients List</h1>
-      <Link to="/patients/new/">+ Додати пацієнта</Link>
+      <section className={styles.header}>
+        <div>
+          <p className={styles.kicker}>Patients</p>
+          <h1>Пацієнти</h1>
+          <p className={styles.subtitle}>
+            Медичні картки, контакти і швидке редагування даних пацієнтів.
+          </p>
+        </div>
+        <Link
+          className={styles.addButton}
+          to="/patients/new/"
+        >
+          Додати пацієнта
+        </Link>
+      </section>
+
       {
         patients.length === 0 ? (<p>No patients found</p>) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Full Name</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Дії над пацієнтами</th>
-              </tr>
-            </thead>
-            <tbody>
-              {patients.map(patient => (
-                <PatientCard
-                  key={patient.id}
-                  data={patient}
-                />))}
+          <section className={styles.tableShell}>
+            <div className={styles.tableHeader}>
+              <h2>Список пацієнтів</h2>
+              <span>{patients.length} записів</span>
+            </div>
+            <div className={styles.tableScroll}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Full Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Дії</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {patients.map(patient => (
+                    <PatientCard
+                      key={patient.id}
+                      data={patient}
+                    />))}
 
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            </div>
+          </section>
         )
       }
     </div>

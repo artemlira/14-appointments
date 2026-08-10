@@ -6,6 +6,12 @@ export const patientsApi = medicalApi.injectEndpoints({
       query: () => 'patients',
       providesTags: ['Patients'],
     }),
+    getPatientById: builder.query({
+      query: (id) => `patients/${id}`,
+      providesTags: (result, error, id) => [
+        {type: 'Patient', id}
+      ],
+    }),
     createPatient: builder.mutation({
       query: (patient) => ({
         url: 'patients',
@@ -13,6 +19,17 @@ export const patientsApi = medicalApi.injectEndpoints({
         body: patient,
       }),
       invalidatesTags: ['Patients'],
+    }),
+    updatePatient: builder.mutation({
+      query: ({id, ...data}) => ({
+        url: `patients/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, {id}) => [
+        {type: 'Patient', id},
+        'Patients',
+      ],
     }),
     deletePatient: builder.mutation({
       query: (id) => ({
@@ -30,5 +47,7 @@ export const patientsApi = medicalApi.injectEndpoints({
 export const {
   useGetPatientsQuery,
   useCreatePatientMutation,
-  useDeletePatientMutation
+  useDeletePatientMutation,
+  useGetPatientByIdQuery,
+  useUpdatePatientMutation,
 } = patientsApi;

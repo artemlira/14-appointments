@@ -1,3 +1,21 @@
 .mainLayout {
+  width: min(1180px, calc(100% - 32px));
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 18px 0 40px;
+}
 
+.content {
+  padding: 28px 0 0;
+}
+
+@media (max-width: 720px) {
+  .mainLayout {
+    width: min(100% - 20px, 1180px);
+    padding-top: 10px;
+  }
+
+  .content {
+    padding-top: 18px;
+  }
 }
