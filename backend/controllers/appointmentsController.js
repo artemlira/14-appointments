@@ -1,0 +1,86 @@
+const { readData, writeData } = require('../utils/fileHandler')
+const { v4: uuidv4 } = require('uuid')
+
+const filePath = './data/appointments.json'
+const patientsPath = './data/patients.json'
+const doctorsPath = './data/doctors.json'
+
+exports.getAllAppointments = async (req, res) => {
+  const appointments = await readData(filePath)
+  const patients = await readData(patientsPath)
+  const doctors = await readData(doctorsPath)
+  const { date, patientName } = req.query
+
+  let result = appointments
+
+  if (date) {
+    result = result.filter((app) => app.date.startsWith(date))
+  }
+
+  if (patientName) {
+    result = result.filter((app) => {
+      const patient = patients.find((p) => p.id === app.patientId)
+      return (
+        patient &&
+        patient.fullName.toLowerCase().includes(patientName.toLowerCase())
+      )
+    })
+  }
+
+  // Підставляємо об'єкти пацієнта і лікаря
+  const resultWithObjects = result.map((app) => {
+    const patient = patients.find((p) => p.id === app.patientId) || null
+    const doctor = doctors.find((d) => d.id === app.doctorId) || null
+    return {
+      ...app,
+      patient,
+      doctor,
+    }
+  })
+
+  res.json(resultWithObjects)
+}
+
+exports.getAppointmentById = async (req, res) => {
+  const appointments = await readData(filePath)
+  const app = appointments.find((a) => a.id === req.params.id)
+  if (app) res.json(app)
+  else res.status(404).json({ error: 'Запис не знайдено' })
+}
+
+exports.createAppointment = async (req, res) => {
+  const appointments = await readData(filePath)
+  const newApp = { id: uuidv4(), ...req.body }
+  appointments.push(newApp)
+  await writeData(filePath, appointments)
+  res.status(201).json(newApp)
+}
+
+exports.updateAppointment = async (req, res) => {
+  const appointments = await readData(filePath)
+  const index = appointments.findIndex((a) => a.id === req.params.id)
+  if (index !== -1) {
+    appointments[index] = { ...appointments[index], ...req.body }
+    await writeData(filePath, appointments)
+    res.json(appointments[index])
+  } else res.status(404).json({ error: 'Запис не знайдено' })
+}
+
+exports.deleteAppointment = async (req, res) => {
+  const appointments = await readData(filePath)
+  const updated = appointments.filter((a) => a.id !== req.params.id)
+  if (updated.length === appointments.length)
+    return res.status(404).json({ error: 'Запис не знайдено' })
+  await writeData(filePath, updated)
+  res.status(204).end()
+}
+
+exports.patchAppointment = async (req, res) => {
+  const appointments = await readData(filePath)
+  const index = appointments.findIndex((a) => a.id === req.params.id)
+  if (index !== -1) {
+    appointments[index] = { ...appointments[index], ...req.body }
+    await writeData(filePath, appointments)
+    res.json(appointments[index])
+  } else res.status(404).json({ error: 'Запис не знайдено' })
+}
