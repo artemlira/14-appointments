@@ -14,7 +14,7 @@ function HomePage() {
         </div>
         <div className={styles.summaryPanel}>
           <div>
-            <span className={styles.metric}>01</span>
+            <span className={styles.metric}>02</span>
             <span className={styles.label}>Активний модуль</span>
           </div>
           <div>
