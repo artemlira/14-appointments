@@ -17,6 +17,6 @@ app.use(bodyParser.json())
 // Роути
 app.use('/patients', patientsRoutes)
 app.use('/appointments', appointmentsRoutes)
-app.use('/admin/doctors', doctorsRoutes)
+app.use('/doctors', doctorsRoutes)
 
 module.exports = app
