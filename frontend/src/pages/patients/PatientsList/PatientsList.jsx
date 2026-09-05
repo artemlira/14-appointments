@@ -6,9 +6,11 @@ import DataTable from "@/components/ui/DataTable";
 import ListToolbar from "@/components/ui/ListToolbar";
 import PageHeader from "@/components/ui/PageHeader";
 import StateMessage from "@/components/ui/StateMessage";
+import {useState} from "react";
 
 function PatientsList() {
-  const {data: patients, isLoading, isError} = useGetPatientsQuery();
+  const [nameFilter, setNameFilter] = useState('');
+  const {data: patients = [], isLoading, isError} = useGetPatientsQuery(nameFilter.trim());
 
   if (isLoading) return <StateMessage>Loading...</StateMessage>;
   if (isError) return <StateMessage>Error: {isError.message}</StateMessage>;
@@ -25,8 +27,10 @@ function PatientsList() {
       <ListToolbar>
         <input
           type="search"
-          name="fullName"
+          name="name"
           placeholder="Фільтрація за ПІБ"
+          value={nameFilter}
+          onChange={(e) => setNameFilter(e.target.value)}
         />
       </ListToolbar>
 

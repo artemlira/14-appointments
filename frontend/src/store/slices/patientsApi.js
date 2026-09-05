@@ -3,7 +3,10 @@ import {medicalApi} from "@/store/api";
 export const patientsApi = medicalApi.injectEndpoints({
   endpoints: (builder) => ({
     getPatients: builder.query({
-      query: () => 'patients',
+      query: (name = '') => ({
+        url: 'patients',
+        params: name ? {name} : undefined,
+      }),
       providesTags: ['Patients'],
     }),
     getPatientById: builder.query({
